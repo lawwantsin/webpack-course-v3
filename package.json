@@ -13,7 +13,7 @@
     "babel-polyfill": "*",
     "babel-preset-env": "*",
     "babel-preset-es2015": "*",
-    "babel-preset-react": "^6.24.1",
+    "babel-preset-react": "*",
     "css-loader": "*",
     "express": "*",
     "extract-loader": "*",
@@ -33,6 +33,7 @@
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
     "build": "webpack --config=config/webpack.dev.js",
-    "dev": "nodemon --inspect --watch config --watch src/server src/server/main.js"
+    "dev":
+      "nodemon --inspect --watch config --watch src/server src/server/main.js"
   }
 }
