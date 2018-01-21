@@ -1,14 +1,16 @@
 const path = require("path")
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin
 
 module.exports = {
   entry: {
-    vendor: ["react", "lodash", "react-dom"],
+    vendor: ["react", "lodash"],
     main: [
       "react-hot-loader/patch",
       "babel-runtime/regenerator",
-      "babel-core/register",
+      "babel-register",
       "webpack-hot-middleware/client?reload=true",
       "./src/main.js"
     ]
@@ -68,12 +70,20 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ["manifest"],
+      filename: "[name].js",
+      minChunks: Infinity
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development")
       }
+    }),
+    new BundleAnalyzerPlugin({
+      generateStatsFile: false
     })
     // new HTMLWebpackPlugin({
     //   template: "./src/index.ejs",
