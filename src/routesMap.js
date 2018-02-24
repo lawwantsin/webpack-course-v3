@@ -3,6 +3,7 @@ import { fetchData } from "./utils"
 
 export default {
   GALLERY: "/",
+  ABOUT: "/about",
   ARTICLE: {
     path: "/article/:slug",
     thunk: async (dispatch, getState) => {
