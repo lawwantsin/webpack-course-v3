@@ -9,7 +9,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "body{background-color:#020f17}", ""]);
+exports.push([module.i, "body{background-color:#020f17}.Article .billboard{background-position:0 -100px}", ""]);
 
 // exports
 

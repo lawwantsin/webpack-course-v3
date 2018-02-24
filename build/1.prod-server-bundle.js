@@ -40,14 +40,14 @@ module.exports = {"title":"About Link","author":"Link","__content":"<h1 id=\"lon
 /***/ "./data/link/post.md":
 /***/ (function(module, exports) {
 
-module.exports = {"title":"Title","author":"Link","__content":"<h1 id=\"title-of-an-article\">Title of an article</h1>\n<p>My name is Link and I&#39;ll be damned.</p>\n"}
+module.exports = {"title":"Day One: An Adventure Begins!","author":"Link","posterImage":"http://laws-articles.s3.amazonaws.com/link-article-cover.jpg","__content":"<p><img src=\"http://laws-articles.s3.amazonaws.com/article-link-1.jpg\" alt=\"\"></p>\n<p>Good morning. I&#39;m off on an adventure to rescue the Princess. I&#39;ll bring my sword because, it&#39;s dangerous to go into caves alone, and my sword counts as people.</p>\n<p>Someone gave me this map. I should keep it on me, like in the upper right-hand corner. Hyrule looks gigantic. I bet they&#39;ll have me mowing lawns for a while.</p>\n<p><img src=\"http://laws-articles.s3.amazonaws.com/article-link-2.jpg\" alt=\"\"></p>\n"}
 
 /***/ }),
 
 /***/ "./data/link/post2.md":
 /***/ (function(module, exports) {
 
-module.exports = {"title":"Title","author":"Link","__content":"<h1 id=\"post-two\">Post Two</h1>\n<p>My name is Link and I&#39;ll be damned.</p>\n"}
+module.exports = {"title":"There's Rupees in them thar lawns","author":"Link","posterImage":"http://laws-articles.s3.amazonaws.com/link-article-cover-2.jpg","__content":"<p><img src=\"http://laws-articles.s3.amazonaws.com/article-link-3.jpg\" alt=\"\"></p>\n<p>I knew my sword was good for something. Why not earn a little extra money while on my very time sensitive adventure. No real rush tho. I hope Zelda has a few good books she can read.</p>\n<p>Who knew these things swords could be so heavy? I bet I could take on Ganon already, I&#39;m just sharpening it on this grass and Octoroks. I got em all running scared.</p>\n<p><img src=\"http://laws-articles.s3.amazonaws.com/article-link-4.jpg\" alt=\"\"></p>\n"}
 
 /***/ }),
 
@@ -61,14 +61,14 @@ module.exports = {"title":"About Zelda","author":"Zelda","__content":"<h1 id=\"h
 /***/ "./data/zelda/post.md":
 /***/ (function(module, exports) {
 
-module.exports = {"title":"Title to an Article","author":"Zelda","__content":"<h1 id=\"this-is-an-article\">This is an article</h1>\n<p>My name is Zelda and I&#39;m in no distress.</p>\n"}
+module.exports = {"title":"Ganon is the Worst Host","author":"Zelda","posterImage":"http://laws-articles.s3.amazonaws.com/triforce-article-cover.jpg","__content":"<p><img src=\"http://laws-articles.s3.amazonaws.com/article-zelda-1.jpg\" alt=\"\"></p>\n<p>It sucks in here. I&#39;m trapped in Ganon&#39;s stinky old prison. The tri-force is just out of range. I can&#39;t feel it from here. I&#39;ll need to devise an escape plan. Something ingeniously magical.</p>\n<p>I&#39;m sure I&#39;ll think of something clever, but until then, I&#39;m going to think of my true love... Hyrule. I do hope she&#39;s doing okay out there. That someone brave is keeping her grass cut.</p>\n<p><img src=\"http://laws-articles.s3.amazonaws.com/article-zelda-2.jpg\" alt=\"\"></p>\n"}
 
 /***/ }),
 
 /***/ "./data/zelda/post2.md":
 /***/ (function(module, exports) {
 
-module.exports = {"title":"Title to an Article","author":"Zelda","__content":"<h1 id=\"post-two\">Post Two</h1>\n<p>My name is Zelda and I&#39;m in no distress.</p>\n"}
+module.exports = {"title":"This lock is making me angry","author":"Zelda","posterImage":"http://laws-articles.s3.amazonaws.com/zelda-article-cover-2.jpg","__content":"<p><img src=\"http://laws-articles.s3.amazonaws.com/article-zelda-3.jpg\" alt=\"\"></p>\n<p>Okay this is getting to be a bore. This lock is watching me. I&#39;m sure of it. Perhaps Link will find me, perhaps not, but if I can just turn these hand cuffs into a sword, with my magic, I can make enough noise to get the guards to open the lock for me.</p>\n<p>Ah ha! I&#39;ve done it. Magic&#39;s working again. Tri-force must be near. Okay, now to make all the noise in the world. These guards have no idea what kind of Princess they&#39;re dealing with.</p>\n<p><img src=\"http://laws-articles.s3.amazonaws.com/article-zelda-4.jpg\" alt=\"\"></p>\n"}
 
 /***/ }),
 
@@ -80,7 +80,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".Article{margin:100px auto}.Article .billboard{position:fixed;height:500px;width:100%;top:0;z-index:0;background-color:#111;border-bottom:4px solid #fff;background-size:cover;background-position:50%}.Article h1{box-sizing:border-box;position:relative;z-index:2;color:#fff;font-weight:100;font-size:4em;width:820px;padding-left:400px;padding-right:40px;text-align:right;margin:0 auto -13px;text-shadow:0 0 20px #000}", ""]);
 
 // exports
 
@@ -112,10 +112,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = function (props) {
   try {
     var MarkdownData = __webpack_require__("./data recursive ^\\.\\/.*\\.md$")("./" + props.site + "/" + props.params.slug + ".md");
-    return _react2.default.createElement("div", {
-      className: "content",
-      dangerouslySetInnerHTML: { __html: MarkdownData.__content }
-    });
+    var billboardStyle = {
+      backgroundImage: "url(" + MarkdownData.posterImage + ")"
+    };
+    return _react2.default.createElement(
+      "div",
+      { className: "Article" },
+      _react2.default.createElement("div", { className: "billboard", style: billboardStyle }),
+      _react2.default.createElement(
+        "h1",
+        null,
+        MarkdownData.title
+      ),
+      _react2.default.createElement("div", {
+        className: "content",
+        dangerouslySetInnerHTML: { __html: MarkdownData.__content }
+      })
+    );
   } catch (error) {
     return _react2.default.createElement(_NotFound2.default, null);
   }

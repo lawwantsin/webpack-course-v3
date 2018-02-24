@@ -750,17 +750,23 @@ var _react = __webpack_require__("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+__webpack_require__("./src/css/NotFound.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = function (_ref) {
   var children = _ref.children;
   return _react2.default.createElement(
     "div",
-    { className: "content" },
+    { className: "NotFound" },
     _react2.default.createElement(
-      "h1",
-      null,
-      "Not Found"
+      "div",
+      { className: "inner" },
+      _react2.default.createElement(
+        "h1",
+        null,
+        "Not Found"
+      )
     )
   );
 };
@@ -896,6 +902,13 @@ exports.default = function (props) {
 
 /***/ }),
 
+/***/ "./src/css/NotFound.css":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./src/css/nav.css":
 /***/ (function(module, exports) {
 
@@ -946,11 +959,11 @@ exports.default = function (_ref) {
     var site = req.headers.host.split(":")[0].split(".")[0];
     var context = { site: site };
 
-    res.send("\n    <html>\n      <head>\n        " + styles + "\n        <link href=\"/css/" + site + "-theme-css.css\" rel=\"stylesheet\">\n      </head>\n      <body>\n        <div id=\"react-root\">" + (0, _server.renderToString)(_react2.default.createElement(
+    res.send("\n    <html>\n      <head>\n        " + styles + "\n      </head>\n      <body>\n        <div id=\"react-root\">" + (0, _server.renderToString)(_react2.default.createElement(
       _reactRouter.StaticRouter,
       { location: req.url, context: context },
       _react2.default.createElement(_Routes2.default, null)
-    )) + "</div>\n        " + js + "\n        " + cssHash + "\n      </body>\n    </html>\n  ");
+    )) + "</div>\n        " + js + "\n        " + cssHash + "\n        <link href=\"/css/" + site + "-theme-css.css\" rel=\"stylesheet\">\n      </body>\n    </html>\n  ");
   };
 };
 
