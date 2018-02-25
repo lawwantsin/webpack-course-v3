@@ -9,9 +9,10 @@
         "debug": false
       }
     ],
-    "babel-preset-react"
+    "babel-preset-react",
+    "stage-2"
   ],
-  "plugins": ["syntax-dynamic-import", "universal-import"],
+  "plugins": ["universal-import"],
   "env": {
     "development": {
       "plugins": ["react-hot-loader/babel"]

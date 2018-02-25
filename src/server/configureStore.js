@@ -1,6 +1,6 @@
 import createHistory from "history/createMemoryHistory"
 import { NOT_FOUND } from "redux-first-router"
-import configureStore from "../src/configureStore"
+import configureStore from "../configureStore"
 
 export default async (req, res) => {
   const history = createHistory({ initialEntries: [req.path] })
