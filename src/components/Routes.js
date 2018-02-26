@@ -4,6 +4,7 @@ import universal from "react-universal-component"
 import { Switch } from "react-router"
 import "../css/nav.css"
 import NotFound from "./NotFound"
+import regeneratorRuntime from "regenerator-runtime"
 
 const UniversalComponent = universal(props => import(`./${props.page}`))
 
@@ -11,6 +12,11 @@ const getSite = staticContext =>
   staticContext || {
     site: location.hostname.split(".")[0]
   }
+
+const renderer = async (site, slug) => {
+  const data = await import(`../../data/${site.site}/${slug}.md`)
+  return data
+}
 
 export default props => {
   return (
@@ -35,7 +41,15 @@ export default props => {
           path="/article/:slug"
           render={({ staticContext, match }) => {
             const site = getSite(staticContext)
-            return <UniversalComponent {...site} {...match} page="Article" />
+            return renderer(site, match.params.slug).then(data => {
+              return
+              ;<UniversalComponent
+                {...site}
+                {...match}
+                data={data}
+                page="Article"
+              />
+            })
           }}
         />
         <Route component={NotFound} />

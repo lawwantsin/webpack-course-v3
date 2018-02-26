@@ -11,7 +11,19 @@
     ],
     "babel-preset-react"
   ],
-  "plugins": ["syntax-dynamic-import", "universal-import"],
+  "plugins": [
+    "syntax-dynamic-import",
+    "universal-import",
+    [
+      "transform-regenerator",
+      {
+        "asyncGenerators": false,
+        "generators": false,
+        "async": false
+      }
+    ],
+    "syntax-async-functions"
+  ],
   "env": {
     "development": {
       "plugins": ["react-hot-loader/babel"]
